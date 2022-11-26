@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--Exmployees list-->
+<html>
+<head>
+    <title>Employees</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Employees</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0; i<employees.length; i++) { %>
+                <tr>
+                    <td><%= employees[i].id %></td>
+                    <td><%= employees[i].firstName %></td>
+                    <td><%= employees[i].lastName %></td>
+                    <td><%= employees[i].Department %></td>
+                    <td><%= employees[i].Salary %></td>
+                    <td>
+                        <!--menu for buttons-->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle edit-modal" type="button" data-toggle="dropdown">Actions
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/employees/delete?id=<%= employees[i].id %>">Delete</a></li>
+                                <li><a href="/employees/edit?id=<%= employees[i].id %>">Edit</a></li>
+                            </ul>
+                        </div>
+                    <tb/>
+                </tr>
+                <% } %>
+            </tbody>
+
+        </table>
+
+        <!-- Number of staff-->
+        <p>Number of staff: <%= employees.length %></p>
+    </div>
+    <!-- addEmployee form -->
+    <form action="/employees/add" method="get">
+        <div class="container">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" required="">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" required="">
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" class="form-control" id="department" name="department" required="">
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary:</label>
+                <input type="text" class="form-control" id="salary" name="salary" required="">
+            </div>
+            <button type="submit" class="btn btn-default">Add</button>
+        </div>
+    </form>
+
+    <!-- deleteEmployee form -->
+    <br>
+    <form action="/employees/delete" method="get">
+        <div class="container">
+            <h1>Fire Employee</h1>
+            <table class="table table-striped">
+            <div class="form-group">
+                <label for="id">Id:</label>
+                <input type="text" class="form-control" id="id" name="id" required="">
+            </div>
+            <button type="submit" class="btn btn-default">Delete</button>
+        </div>
+    </form>
+</body>
+</html>
