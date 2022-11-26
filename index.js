@@ -19,8 +19,8 @@ app.get('/employees', (req, res) => {
 });
 
 app.get('/employees/add', (req, res) => {
-    const { firstName, lastName, department, salary } = req.query;
-    employee.addEmployee(firstName, lastName, department, salary);
+    const { firstName, lastName, email, department, salary } = req.query;
+    employee.addEmployee(firstName, lastName, email, department, salary);
     res.redirect('/employees');
 });
 
@@ -32,11 +32,33 @@ app.get('/employees/delete', (req, res) => {
 
 app.get('/employees/edit', (req, res) => {
     const { id } = req.query;
-    console.log(id);
     employee.getEmployeeById(id).then((data) => {
-        res.send(data);
+        res.render('edit', {employee: data[0]});
     });
 });
+
+app.get('/employees/update', (req, res) => {
+    // find what is being updated
+    const { id, firstName, lastName, email, department, salary } = req.query;
+    if (firstName != null) {
+        employee.updateEmployeeById(id, firstName);
+    }
+    if (lastName != null) {
+        employee.updateEmployeeById(id, null, lastName);
+    }
+    if (email != null) {
+        employee.updateEmployeeById(id, null, null, email);
+    }
+    if (department != null) {
+        employee.updateEmployeeById(id, null, null, null, department);
+    }
+    if (salary != null) {
+        employee.updateEmployeeById(id, null, null, null, null, salary);
+    }
+    console.log();
+    res.redirect('/employees');
+});
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
