@@ -44,6 +44,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/employees/delete?id=<%= employees[i].id %>">Fire</a></li>
                                 <li><a href="/employees/edit?id=<%= employees[i].id %>">Edit</a></li>
+                                <!--Email-->
+                                <li><a href="/employees/email?id=<%= employees[i].id %>">Email</a></li>
                             </ul>
                         </div>
                     <tb/>
@@ -80,20 +82,6 @@
                 <input type="text" class="form-control" id="salary" name="salary" required="">
             </div>
             <button type="submit" class="btn btn-default">Add</button>
-        </div>
-    </form>
-
-    <!-- deleteEmployee form -->
-    <br>
-    <form action="/employees/delete" method="get">
-        <div class="container">
-            <h1>Fire Employee</h1>
-            <table class="table table-striped">
-            <div class="form-group">
-                <label for="id">Id:</label>
-                <input type="text" class="form-control" id="id" name="id" required="">
-            </div>
-            <button type="submit" class="btn btn-default">Delete</button>
         </div>
     </form>
 </body>
